@@ -170,8 +170,11 @@ public class Sudoku
             int j = cellId%9;
             if (j != 0)
                 j = j - 1;
+            if (i == 9) {
+                i--;
+            }
 
-            // System.out.println(i+" "+j);
+            System.out.println("Values: " + i+" "+j);
             if (mat[i][j] != 0)
             {
                 count--;

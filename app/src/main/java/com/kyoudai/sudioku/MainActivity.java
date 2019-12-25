@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setGrid() {
         int dimension = 9;
-        int numberOfDigitsToRemove = 10;
+        int numberOfDigitsToRemove = 50;
 
         Sudoku sudoku = new Sudoku(dimension, numberOfDigitsToRemove);
         sudoku.fillValues();
