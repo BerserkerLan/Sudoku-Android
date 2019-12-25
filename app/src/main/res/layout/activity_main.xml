@@ -6,8 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <GridLayout
         android:id="@+id/sudokuGrid"
+        android:columnCount="9"
+        android:rowCount="9"
+        android:background="@drawable/rectback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,7 +19,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text=""-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:text="1"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:textAlignment="center"-->
+<!--            />-->
+<!--        -->
+
+
+
 
     </GridLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/sudokuGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

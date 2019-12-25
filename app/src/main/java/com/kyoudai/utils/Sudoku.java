@@ -10,7 +10,7 @@ public class Sudoku
     int K; // No. Of missing digits
 
     // Constructor
-    Sudoku(int N, int K)
+    public Sudoku(int N, int K)
     {
         this.N = N;
         this.K = K;
@@ -180,9 +180,15 @@ public class Sudoku
         }
     }
 
+    //return matrix
+    public int[][] returnMatrix() {
+        return mat;
+    }
+
     // Print sudoku
     public void printSudoku()
     {
+        System.out.println("Printing Sudoku....");
         for (int i = 0; i<N; i++)
         {
             for (int j = 0; j<N; j++)
@@ -190,14 +196,5 @@ public class Sudoku
             System.out.println();
         }
         System.out.println();
-    }
-
-    // Driver code
-    public static void main(String[] args)
-    {
-        int N = 9, K = 20;
-        Sudoku sudoku = new Sudoku(N, K);
-        sudoku.fillValues();
-        sudoku.printSudoku();
     }
 }
