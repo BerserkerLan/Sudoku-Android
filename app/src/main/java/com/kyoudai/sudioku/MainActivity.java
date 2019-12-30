@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,11 +19,17 @@ public class MainActivity extends AppCompatActivity {
 
     GridLayout sudokuGrid;
     Drawable[][] drawableCellArray;
+    private TextView lastCell;
+    private Drawable lastCellDrawable;
+
+    int mistakes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sudokuGrid = findViewById(R.id.sudokuGrid);
+        mistakes = 0;
 
         setupDrawableForGrid();
         setGrid();
@@ -64,9 +71,20 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     numberCell.setBackground(getResources().getDrawable(R.drawable.rectback));
                 }
+                numberCell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (lastCell != null) {
+                            lastCell.setBackground(lastCellDrawable);
+                        }
+                        lastCell = (TextView) v;
+                        lastCellDrawable = v.getBackground();
+                        v.setBackground(getResources().getDrawable(R.color.lightBlue));
+                    }
+                });
                 numberCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                numberCell.setTextColor(getResources().getColor(R.color.black));
                 numberCell.setTextSize(33);
-//                numberCell.setBackgroundResource(R.drawable.cellbottom);
                 sudokuGrid.addView(numberCell);
             }
         }
@@ -141,4 +159,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void numberClick(View view) {
+        if (lastCell != null) {
+            if (lastCell.getText() == "") {
+                Button button = (Button) view;
+                int left = getRelativeLeft(view);
+                int top = getRelativeTop(view);
+                int selectedNumber = Integer.parseInt(button.getText().toString());
+                lastCell.setText(selectedNumber + "");
+            }
+        }
+    }
+    private int getRelativeLeft(View myView) {
+        if (myView.getParent() == myView.getRootView())
+            return myView.getLeft();
+        else
+            return myView.getLeft() + getRelativeLeft((View) myView.getParent());
+    }
+
+    private int getRelativeTop(View myView) {
+        if (myView.getParent() == myView.getRootView())
+            return myView.getTop();
+        else
+            return myView.getTop() + getRelativeTop((View) myView.getParent());
+    }
 }

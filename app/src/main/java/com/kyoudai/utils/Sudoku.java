@@ -5,6 +5,7 @@ import java.lang.*;
 public class Sudoku
 {
     int[] mat[];
+    int[] solvedMat[];
     int N; // number of columns/rows.
     int SRN; // square root of N
     int K; // No. Of missing digits
@@ -31,6 +32,7 @@ public class Sudoku
         // Fill remaining blocks
         fillRemaining(0, SRN);
 
+        solvedMat = mat;
         // Remove Randomly K digits to make game
         removeKDigits();
     }
@@ -186,6 +188,11 @@ public class Sudoku
     //return matrix
     public int[][] returnMatrix() {
         return mat;
+    }
+
+    //return solved without removal
+    public int[][] returnSolvedMatrix() {
+        return solvedMat;
     }
 
     // Print sudoku

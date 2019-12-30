@@ -7,6 +7,17 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/mistakesNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mistakes: 0/3"
+        app:layout_constraintBottom_toTopOf="@+id/sudokuGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refreshButton"
+        app:layout_constraintVertical_bias="0.115" />
+
     <GridLayout
         android:id="@+id/sudokuGrid"
         android:columnCount="9"
@@ -31,6 +42,7 @@
     </GridLayout>
 
     <LinearLayout
+        android:id="@+id/numbersLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +55,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:text="1"
+            android:onClick="numberClick"
             android:background="@color/white"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
@@ -52,6 +65,7 @@
             android:layout_height="50dp"
             android:text="2"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -60,6 +74,7 @@
             android:layout_height="50dp"
             android:text="3"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -68,6 +83,7 @@
             android:layout_height="50dp"
             android:text="4"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -76,6 +92,7 @@
             android:layout_height="50dp"
             android:text="5"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -84,6 +101,7 @@
             android:layout_height="50dp"
             android:text="6"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -92,6 +110,7 @@
             android:layout_height="50dp"
             android:text="7"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -100,6 +119,7 @@
             android:layout_height="50dp"
             android:text="8"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
@@ -108,6 +128,7 @@
             android:layout_height="50dp"
             android:text="9"
             android:background="@color/white"
+            android:onClick="numberClick"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
 
