@@ -11,7 +11,8 @@
         android:id="@+id/sudokuGrid"
         android:columnCount="9"
         android:rowCount="9"
-        android:background="@drawable/rectback"
+        android:padding="3dp"
+        android:background="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,6 +26,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text=""-->
@@ -32,6 +34,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -39,6 +42,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -46,6 +50,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -53,6 +58,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -60,6 +66,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -67,6 +74,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -74,6 +82,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -81,6 +90,7 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
 <!--        <TextView-->
 <!--            android:text="1"-->
@@ -88,8 +98,9 @@
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:textAlignment="center"-->
+<!--            android:background="@drawable/cellbottom"-->
 <!--            />-->
-<!--        -->
+
 
 
 
