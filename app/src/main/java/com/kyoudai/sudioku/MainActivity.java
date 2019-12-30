@@ -170,6 +170,11 @@ public class MainActivity extends AppCompatActivity {
                 Button button = (Button) view;
                 int left = getRelativeLeft(lastCell);
                 int top = getRelativeTop(lastCell);
+                left = left - 45;
+                left = left/110;
+                top = top - 659;
+                top = top/ 110;
+                Toast.makeText(getApplicationContext(), left + " : " + top, Toast.LENGTH_LONG).show();
                 int selectedNumber = Integer.parseInt(button.getText().toString());
                 lastCell.setText(selectedNumber + "");
             }
