@@ -77,39 +77,39 @@ public class MainActivity extends AppCompatActivity {
         //Set rights which are column divisions
         drawableCellArray[0][2] = getResources().getDrawable(R.drawable.cellright);
         drawableCellArray[0][5] = getResources().getDrawable(R.drawable.cellright);
-        drawableCellArray[0][8] = getResources().getDrawable(R.drawable.cellright);
+        //drawableCellArray[0][8] = getResources().getDrawable(R.drawable.cellright);
 
         drawableCellArray[1][2] = getResources().getDrawable(R.drawable.cellright);
         drawableCellArray[1][5] = getResources().getDrawable(R.drawable.cellright);
-        drawableCellArray[1][8] = getResources().getDrawable(R.drawable.cellright);
+       // drawableCellArray[1][8] = getResources().getDrawable(R.drawable.cellright);
 
         drawableCellArray[2][2] = getResources().getDrawable(R.drawable.cellbottomright);
         drawableCellArray[2][5] = getResources().getDrawable(R.drawable.cellbottomright);
-        drawableCellArray[2][8] = getResources().getDrawable(R.drawable.cellbottomright);
+        drawableCellArray[2][8] = getResources().getDrawable(R.drawable.cellbottom);
 
         drawableCellArray[3][2] = getResources().getDrawable(R.drawable.cellright);
         drawableCellArray[3][5] = getResources().getDrawable(R.drawable.cellright);
-        drawableCellArray[3][8] = getResources().getDrawable(R.drawable.cellright);
+       // drawableCellArray[3][8] = getResources().getDrawable(R.drawable.cellright);
 
         drawableCellArray[4][2] = getResources().getDrawable(R.drawable.cellright);
         drawableCellArray[4][5] = getResources().getDrawable(R.drawable.cellright);
-        drawableCellArray[4][8] = getResources().getDrawable(R.drawable.cellright);
+       // drawableCellArray[4][8] = getResources().getDrawable(R.drawable.cellright);
 
         drawableCellArray[5][2] = getResources().getDrawable(R.drawable.cellbottomright);
         drawableCellArray[5][5] = getResources().getDrawable(R.drawable.cellbottomright);
-        drawableCellArray[5][8] = getResources().getDrawable(R.drawable.cellbottomright);
+        drawableCellArray[5][8] = getResources().getDrawable(R.drawable.cellbottom);
 
         drawableCellArray[6][2] = getResources().getDrawable(R.drawable.cellright);
         drawableCellArray[6][5] = getResources().getDrawable(R.drawable.cellright);
-        drawableCellArray[6][8] = getResources().getDrawable(R.drawable.cellright);
+        //drawableCellArray[6][8] = getResources().getDrawable(R.drawable.cellright);
 
         drawableCellArray[7][2] = getResources().getDrawable(R.drawable.cellright);
         drawableCellArray[7][5] = getResources().getDrawable(R.drawable.cellright);
-        drawableCellArray[7][8] = getResources().getDrawable(R.drawable.cellright);
+        //drawableCellArray[7][8] = getResources().getDrawable(R.drawable.cellright);
 
         drawableCellArray[8][2] = getResources().getDrawable(R.drawable.cellbottomright);
         drawableCellArray[8][5] = getResources().getDrawable(R.drawable.cellbottomright);
-        drawableCellArray[8][8] = getResources().getDrawable(R.drawable.cellbottomright);
+        drawableCellArray[8][8] = getResources().getDrawable(R.drawable.cellbottom);
 
         //Set Bottoms which are row divisions
         drawableCellArray[2][0] = getResources().getDrawable(R.drawable.cellbottom);
