@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kyoudai.utils.Sudoku;
 
@@ -162,9 +163,13 @@ public class MainActivity extends AppCompatActivity {
     public void numberClick(View view) {
         if (lastCell != null) {
             if (lastCell.getText() == "") {
+                //Top diff = 110
+                //Left diff = 110
+                //Start= Top:659, left: 45 (Top left)
+                //End= Top:1539, left: 925 (bottom right)
                 Button button = (Button) view;
-                int left = getRelativeLeft(view);
-                int top = getRelativeTop(view);
+                int left = getRelativeLeft(lastCell);
+                int top = getRelativeTop(lastCell);
                 int selectedNumber = Integer.parseInt(button.getText().toString());
                 lastCell.setText(selectedNumber + "");
             }
