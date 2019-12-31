@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LosingPopup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopUpGuessTheme"/>
     </application>
 
 </manifest>

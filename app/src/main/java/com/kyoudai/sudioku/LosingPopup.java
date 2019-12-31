@@ -1,19 +1,16 @@
 package com.kyoudai.sudioku;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 
-public class LosingPopup extends DialogFragment {
+public class LosingPopup extends Activity {
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.losing_popup, container, false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.losing_popup);
     }
 }

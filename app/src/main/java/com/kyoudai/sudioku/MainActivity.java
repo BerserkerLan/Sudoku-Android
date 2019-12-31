@@ -1,7 +1,9 @@
 package com.kyoudai.sudioku;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.icu.lang.UCharacter;
 import android.os.Bundle;
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Wrong, try again", Toast.LENGTH_SHORT).show();
                     mistakes++;
                     if (mistakes == 3) {
-
+                        showLosingDialogue();
                     }
                 }
             }
@@ -204,5 +206,10 @@ public class MainActivity extends AppCompatActivity {
             return myView.getTop();
         else
             return myView.getTop() + getRelativeTop((View) myView.getParent());
+    }
+
+    public void showLosingDialogue() {
+        final Intent showLosingDialogue = new Intent(getApplicationContext(), LosingPopup.class);
+        startActivity(showLosingDialogue);
     }
 }
