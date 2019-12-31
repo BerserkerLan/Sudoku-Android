@@ -21,6 +21,7 @@ public class Sudoku
         SRN = SRNd.intValue();
 
         mat = new int[N][N];
+        solvedMat = new int[N][N];
     }
 
     // Sudoku Generator
@@ -32,7 +33,11 @@ public class Sudoku
         // Fill remaining blocks
         fillRemaining(0, SRN);
 
-        solvedMat = mat;
+        for (int i =0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                solvedMat[i][j] = mat[i][j];
+            }
+    }
         // Remove Randomly K digits to make game
         removeKDigits();
     }

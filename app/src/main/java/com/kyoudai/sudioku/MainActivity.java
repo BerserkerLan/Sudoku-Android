@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     GridLayout sudokuGrid;
     Drawable[][] drawableCellArray;
+    Sudoku sudoku;
     private TextView lastCell;
     private Drawable lastCellDrawable;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         int dimension = 9;
         int numberOfDigitsToRemove = 50;
 
-        Sudoku sudoku = new Sudoku(dimension, numberOfDigitsToRemove);
+        sudoku = new Sudoku(dimension, numberOfDigitsToRemove);
         sudoku.fillValues();
         sudoku.printSudoku();
 
@@ -174,9 +175,20 @@ public class MainActivity extends AppCompatActivity {
                 left = left/110;
                 top = top - 659;
                 top = top/ 110;
-                Toast.makeText(getApplicationContext(), left + " : " + top, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), left + " : " + top, Toast.LENGTH_LONG).show();
                 int selectedNumber = Integer.parseInt(button.getText().toString());
-                lastCell.setText(selectedNumber + "");
+                int actualAnswer = sudoku.returnSolvedMatrix()[top][left];
+                if (selectedNumber == actualAnswer) {
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                    lastCell.setText(selectedNumber + "");
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Wrong, try again", Toast.LENGTH_SHORT).show();
+                    mistakes++;
+                    if (mistakes == 3) {
+
+                    }
+                }
             }
         }
     }
