@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView lastCell;
     private Drawable lastCellDrawable;
     SwitchCompat switchToDio;
+    LinearLayout numbersLayout;
+    int mode = 0; //0 = int, 1 = DIO (Amazing programming ik >.> )
 
     public static int mistakes;
 
@@ -34,12 +37,14 @@ public class GameActivity extends AppCompatActivity {
         sudokuGrid = findViewById(R.id.sudokuGrid);
         mistakes = 0;
         switchToDio = findViewById(R.id.switchToDio);
+        numbersLayout = findViewById(R.id.numbersLayout);
 
         //DIO Image size: 574 X 574
         switchToDio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { //It's DIO
+                    mode=1;
                     TextView textView;
                     for (int i = 0; i < sudokuGrid.getChildCount(); i++) {
                         textView = (TextView) sudokuGrid.getChildAt(i);
@@ -74,8 +79,44 @@ public class GameActivity extends AppCompatActivity {
                                 break;
                         }
                     }
+                    Button button;
+                    for (int i = 0; i < numbersLayout.getChildCount(); i++) {
+                        button =(Button) numbersLayout.getChildAt(i);
+                        button.setTextColor(getResources().getColor(R.color.transparent));
+                        switch (button.getText().toString()) {
+                            case ("1"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_1));
+                                break;
+                            case ("2"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_2));
+                                break;
+                            case ("3"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_3));
+                                break;
+                            case ("4"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_4));
+                                break;
+                            case ("5"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_5));
+                                break;
+                            case ("6"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_6));
+                                break;
+                            case ("7"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_7));
+                                break;
+                            case ("8"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_8));
+                                break;
+                            case ("9"):
+                                button.setBackground(getResources().getDrawable(R.drawable.dio_9));
+                                break;
+                        }
+                    }
+
                 }
                 else {
+                    mode=0;
                     TextView textView;
                     for (int i = 0; i < sudokuGrid.getChildCount(); i++) {
                         textView = (TextView) sudokuGrid.getChildAt(i);
@@ -94,6 +135,12 @@ public class GameActivity extends AppCompatActivity {
                         if (drawableCellArray[top+1][left] != null) {
                             textView.setBackground(drawableCellArray[top+1][left]);
                         }
+                    }
+                    Button button;
+                    for (int i = 0; i < numbersLayout.getChildCount(); i++) {
+                        button =(Button) numbersLayout.getChildAt(i);
+                        button.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        button.setBackgroundColor(getResources().getColor(R.color.white));
                     }
                 }
             }
@@ -248,6 +295,38 @@ public class GameActivity extends AppCompatActivity {
                 if (selectedNumber == actualAnswer) {
                     Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
                     lastCell.setText(selectedNumber + "");
+                    if (mode == 1) {
+                        switch (lastCell.getText().toString()) {
+                            case ("1"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_1));
+                                break;
+                            case ("2"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_2));
+                                break;
+                            case ("3"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_3));
+                                break;
+                            case ("4"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_4));
+                                break;
+                            case ("5"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_5));
+                                break;
+                            case ("6"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_6));
+                                break;
+                            case ("7"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_7));
+                                break;
+                            case ("8"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_8));
+                                break;
+                            case ("9"):
+                                lastCell.setBackground(getResources().getDrawable(R.drawable.dio_9));
+                                break;
+                        }
+                    }
+
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Wrong, try again", Toast.LENGTH_SHORT).show();
