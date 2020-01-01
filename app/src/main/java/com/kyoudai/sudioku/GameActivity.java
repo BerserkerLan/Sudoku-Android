@@ -1,6 +1,7 @@
 package com.kyoudai.sudioku;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ public class GameActivity extends AppCompatActivity {
     Sudoku sudoku;
     private TextView lastCell;
     private Drawable lastCellDrawable;
+    SwitchCompat switchToDio;
 
     public static int mistakes;
 
@@ -30,6 +33,19 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         sudokuGrid = findViewById(R.id.sudokuGrid);
         mistakes = 0;
+        switchToDio = findViewById(R.id.switchToDio);
+
+        switchToDio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) { //It's DIO
+                    
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "It's just numbers", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         setupDrawableForGrid();
         setGrid();

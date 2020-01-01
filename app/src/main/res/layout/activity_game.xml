@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dio_game_bg"
     tools:context=".GameActivity">
 
 
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/titlefont"
         android:text="Mistakes: 0/3"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/sudokuGrid"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/titlefont"
+        android:textColor="@color/white"
         android:text="# "
         android:textOff="DIO"
         android:textOn="Numbers"
@@ -42,7 +44,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/titlefont"
         android:text="DIO"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/sudokuGrid"
         app:layout_constraintEnd_toEndOf="parent"
