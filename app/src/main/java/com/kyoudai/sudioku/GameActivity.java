@@ -40,10 +40,49 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { //It's DIO
-
+                    TextView textView;
+                    for (int i = 0; i < sudokuGrid.getChildCount(); i++) {
+                        textView = (TextView) sudokuGrid.getChildAt(i);
+                        textView.setTextColor(getResources().getColor(R.color.transparent));
+                        switch (textView.getText().toString()) {
+                            case ("1"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_1));
+                                break;
+                            case ("2"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_2));
+                                break;
+                            case ("3"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_3));
+                                break;
+                            case ("4"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_4));
+                                break;
+                            case ("5"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_5));
+                                break;
+                            case ("6"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_6));
+                                break;
+                            case ("7"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_7));
+                                break;
+                            case ("8"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_8));
+                                break;
+                            case ("9"):
+                                textView.setBackground(getResources().getDrawable(R.drawable.dio_9));
+                                break;
+                        }
+                    }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "It's just numbers", Toast.LENGTH_SHORT).show();
+                    TextView textView;
+                    for (int i = 0; i < sudokuGrid.getChildCount(); i++) {
+                        textView = (TextView) sudokuGrid.getChildAt(i);
+                        textView.setBackground(getResources().getDrawable(R.drawable.rectback));
+                        textView.setTextColor(getResources().getColor(R.color.black));
+                    }
+                    setupDrawableForGrid();
                 }
             }
         });

@@ -9,4 +9,5 @@
     <color name="red">#E20707</color>
     <color name="green">#49E207</color>
     <color name="orange">#FF6A00</color>
+    <color name="transparent">#00FF6A00</color>
 </resources>
