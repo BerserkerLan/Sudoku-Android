@@ -33,10 +33,10 @@ public class GameActivity extends AppCompatActivity {
 
         setupDrawableForGrid();
         setGrid();
-        findViewById(R.id.refreshButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.backToMainButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setGrid();
+                finish();
             }
         });
 
