@@ -27,13 +27,13 @@
         android:textSize="15sp"
         android:textAlignment="center"
         android:text="How Foolish, You made 3 mistakes and lost the game"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/undoLastMistake"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/undoLastMistake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
@@ -47,6 +47,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+        android:id="@+id/quitGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quit Game"
@@ -56,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/undoLastMistake"
         app:layout_constraintVertical_bias="0.053" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

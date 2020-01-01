@@ -1,24 +1,20 @@
 package com.kyoudai.sudioku;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.icu.lang.UCharacter;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kyoudai.utils.Sudoku;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     GridLayout sudokuGrid;
     Drawable[][] drawableCellArray;
@@ -26,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView lastCell;
     private Drawable lastCellDrawable;
 
-    int mistakes;
+    public static int mistakes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
         sudokuGrid = findViewById(R.id.sudokuGrid);
         mistakes = 0;
 
@@ -44,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-//        outState.putIntArray("someVarA", someVarA);
-//        outState.putString("someVarB", someVarB);
     }
 
     public void setGrid() {
