@@ -35,11 +35,12 @@ public class GameActivity extends AppCompatActivity {
         mistakes = 0;
         switchToDio = findViewById(R.id.switchToDio);
 
+        //DIO Image size: 574 X 574
         switchToDio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { //It's DIO
-                    
+
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "It's just numbers", Toast.LENGTH_SHORT).show();
