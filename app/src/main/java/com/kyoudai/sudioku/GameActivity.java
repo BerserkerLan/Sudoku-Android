@@ -81,8 +81,20 @@ public class GameActivity extends AppCompatActivity {
                         textView = (TextView) sudokuGrid.getChildAt(i);
                         textView.setBackground(getResources().getDrawable(R.drawable.rectback));
                         textView.setTextColor(getResources().getColor(R.color.black));
+                        //Top diff = 110
+                        //Left diff = 110
+                        //Start= Top:659, left: 45 (Top left)
+                        //End= Top:1539, left: 925 (bottom right)
+                        int left = getRelativeLeft(textView);
+                        int top = getRelativeTop(textView);
+                        left = left - 45;
+                        left = left/110;
+                        top = top - 659;
+                        top = top/ 110;
+                        if (drawableCellArray[top][left] != null) {
+                            textView.setBackground(drawableCellArray[top][left]);
+                        }
                     }
-                    setupDrawableForGrid();
                 }
             }
         });
