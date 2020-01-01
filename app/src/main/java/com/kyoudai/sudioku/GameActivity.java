@@ -91,8 +91,8 @@ public class GameActivity extends AppCompatActivity {
                         left = left/110;
                         top = top - 659;
                         top = top/ 110;
-                        if (drawableCellArray[top][left] != null) {
-                            textView.setBackground(drawableCellArray[top][left]);
+                        if (drawableCellArray[top+1][left] != null) {
+                            textView.setBackground(drawableCellArray[top+1][left]);
                         }
                     }
                 }
