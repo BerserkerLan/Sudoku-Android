@@ -46,7 +46,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        outState.putIntArray("someVarA", someVarA);
+//        outState.putString("someVarB", someVarB);
+    }
+
     public void setGrid() {
+        mistakes = 0;
         int dimension = 9;
         int numberOfDigitsToRemove = 50;
 
