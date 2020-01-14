@@ -3,7 +3,9 @@ package com.kyoudai.sudioku;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kyoudai.utils.Sudoku;
+
+import java.net.URLEncoder;
+import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -171,17 +176,102 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void setGrid(int numberToRemove) {
+    public void setGrid(int numberOfDigitsToRemove) {
         mistakes = 0;
         int dimension = 9;
-        int numberOfDigitsToRemove = numberToRemove;
 
         sudoku = new Sudoku(dimension, numberOfDigitsToRemove);
         sudoku.fillValues();
         sudoku.printSudoku();
 
         int[][] matrix = sudoku.returnMatrix();
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String savingThis = matrixToString(matrix);
+        editor.putString("matrix", savingThis);
+        editor.apply();
 
+        int[][] newMat = stringToDeep(savingThis);
+
+        TextView numberCell;
+        sudokuGrid.removeAllViews();
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(110, 110);
+
+        for (int i = 0; i < matrix.length; i++) {
+            int[] ints = matrix[i];
+            for (int i1 = 0; i1 < ints.length; i1++) {
+                int anInt = ints[i1];
+                numberCell = new TextView(getApplicationContext());
+                if (anInt != 0) {
+                    numberCell.setText("" + anInt);
+                }
+                numberCell.setLayoutParams(params);
+                if (drawableCellArray[i][i1] != null) {
+                    numberCell.setBackground(drawableCellArray[i][i1]);
+                }
+                else {
+                    numberCell.setBackground(getResources().getDrawable(R.drawable.rectback));
+                }
+                numberCell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (lastCell != null) {
+                            lastCell.setBackground(lastCellDrawable);
+                        }
+                        lastCell = (TextView) v;
+                        lastCellDrawable = v.getBackground();
+                        v.setBackground(getResources().getDrawable(R.color.lightBlue));
+                    }
+                });
+                numberCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                numberCell.setTextColor(getResources().getColor(R.color.black));
+                numberCell.setTextSize(33);
+                sudokuGrid.addView(numberCell);
+            }
+        }
+    }
+
+    public String matrixToString(int[][] matrix) {
+        return Arrays.deepToString(matrix);
+    }
+
+    private static int[][] stringToDeep(String str) {
+        int row = 0;
+        int col = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '[') {
+                row++;
+            }
+        }
+        row--;
+        for (int i = 0;; i++) {
+            if (str.charAt(i) == ',') {
+                col++;
+            }
+            if (str.charAt(i) == ']') {
+                break;
+            }
+        }
+        col++;
+
+        int[][] out = new int[9][9];
+
+        str = str.replaceAll("\\[", "").replaceAll("\\]", "");
+
+        String[] s1 = str.split(", ");
+
+        int j = -1;
+        for (int i = 0; i < s1.length; i++) {
+            if (i % col == 0) {
+                j++;
+            }
+            out[j][i % col] = Integer.parseInt(s1[i]);
+            //System.out.println(s1[i] + "\t" + j + "\t" + i % col);
+        }
+        return out;
+    }
+
+    public void setGrid(int[][] matrix) {
         TextView numberCell;
         sudokuGrid.removeAllViews();
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(110, 110);
@@ -369,5 +459,10 @@ public class GameActivity extends AppCompatActivity {
     public void showLosingDialogue() {
         final Intent showLosingDialogue = new Intent(getApplicationContext(), LosingPopup.class);
         startActivity(showLosingDialogue);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
