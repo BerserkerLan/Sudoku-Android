@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
         findViewById(R.id.newGameButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DifficultySelectionPopup.class);
                 startActivity(intent);
             }
         });

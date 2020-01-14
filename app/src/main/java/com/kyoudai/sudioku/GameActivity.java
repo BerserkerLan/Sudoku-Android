@@ -34,6 +34,20 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        //Easy : Remove 25
+        //Medium : Remove 35
+        //Hard : Remove 50
+        int difficulty = getIntent().getIntExtra("difficulty", 0);
+
+        if (difficulty == 0) {
+            difficulty = 25;
+        }
+        else if (difficulty == 1) {
+            difficulty = 35;
+        }
+        else {
+            difficulty = 50;
+        }
         sudokuGrid = findViewById(R.id.sudokuGrid);
         mistakes = 0;
         switchToDio = findViewById(R.id.switchToDio);
@@ -147,7 +161,7 @@ public class GameActivity extends AppCompatActivity {
         });
 
         setupDrawableForGrid();
-        setGrid();
+        setGrid(difficulty);
         findViewById(R.id.backToMainButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,10 +171,10 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void setGrid() {
+    public void setGrid(int numberToRemove) {
         mistakes = 0;
         int dimension = 9;
-        int numberOfDigitsToRemove = 50;
+        int numberOfDigitsToRemove = numberToRemove;
 
         sudoku = new Sudoku(dimension, numberOfDigitsToRemove);
         sudoku.fillValues();

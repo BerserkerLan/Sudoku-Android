@@ -19,13 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <activity
+            android:name=".GameActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".LosingPopup"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopUpGuessTheme" />
+        <activity android:name=".DifficultySelectionPopup"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"/>
     </application>
 
 </manifest>

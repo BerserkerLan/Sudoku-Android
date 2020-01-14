@@ -10,4 +10,6 @@
     <color name="green">#49E207</color>
     <color name="orange">#FF6A00</color>
     <color name="transparent">#00FF6A00</color>
+    <color name="darkTransparent">#A1000000</color>
+    <color name="yellow">#FFC800</color>
 </resources>
