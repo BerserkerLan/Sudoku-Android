@@ -33,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     private Drawable lastCellDrawable;
     SwitchCompat switchToDio;
     int[][] matrix;
+    static TextView mistakesText;
     LinearLayout numbersLayout;
     int mode = 0; //0 = int, 1 = DIO (Amazing programming ik >.> )
 
@@ -47,6 +48,8 @@ public class GameActivity extends AppCompatActivity {
         //Hard : Remove 50
         int difficulty = getIntent().getIntExtra("difficulty", 0);
         boolean cont = getIntent().getBooleanExtra("continue", false);
+
+        mistakesText = findViewById(R.id.mistakesNumber);
 
         if (difficulty == 0) {
             difficulty = 25;

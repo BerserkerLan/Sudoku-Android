@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-
 import androidx.annotation.Nullable;
 
 public class LosingPopup extends Activity {
@@ -24,7 +23,8 @@ public class LosingPopup extends Activity {
         findViewById(R.id.undoLastMistake).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameActivity.mistakes = 0;
+                GameActivity.mistakes = 2;
+                GameActivity.mistakesText.setText("Mistakes: " + GameActivity.mistakes  + "/3");
                 finish();
             }
         });
