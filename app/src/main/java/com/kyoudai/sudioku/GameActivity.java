@@ -36,7 +36,6 @@ public class GameActivity extends AppCompatActivity {
     static TextView mistakesText;
     LinearLayout numbersLayout;
     int mode = 0; //0 = int, 1 = DIO (Amazing programming ik >.> )
-
     public static int mistakes;
 
     @Override
@@ -417,20 +416,17 @@ public class GameActivity extends AppCompatActivity {
             if (lastCell.getText() == "") {
                 //Top diff = 110
                 //Left diff = 110
-                //Start= Top:659, left: 45 (Top left)
-                //End= Top:1539, left: 925 (bottom right)
+                //Start= Top:582, left: 45 (Top left)
+                //End= Top:1462, left: 925 (bottom right)
                 Button button = (Button) view;
                 int left = getRelativeLeft(lastCell);
                 int top = getRelativeTop(lastCell);
                 left = left - 45;
                 left = left/110;
-                top = top - 659;
+                top = top - 582;
                 top = top/ 110;
                 //Toast.makeText(getApplicationContext(), left + " : " + top, Toast.LENGTH_LONG).show();
                 int selectedNumber = Integer.parseInt(button.getText().toString());
-                if (top != 0) {
-                    top++;
-                }
                 int actualAnswer = sudoku.returnSolvedMatrix()[top][left];
                 if (selectedNumber == actualAnswer) {
                     Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
