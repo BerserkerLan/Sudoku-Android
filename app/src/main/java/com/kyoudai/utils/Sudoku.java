@@ -24,6 +24,12 @@ public class Sudoku
         solvedMat = new int[N][N];
     }
 
+
+    public Sudoku(int[][] mat, int[][] solvedMat) {
+        this.mat = mat;
+        this.solvedMat = solvedMat;
+    }
+
     // Sudoku Generator
     public void fillValues()
     {
@@ -118,7 +124,7 @@ public class Sudoku
     // matrix
     boolean fillRemaining(int i, int j)
     {
-        // System.out.println(i+" "+j);
+        System.out.println(i+" "+j);
         if (j>=N && i<N-1)
         {
             i = i + 1;

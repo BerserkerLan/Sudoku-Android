@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.kyoudai.utils.Sudoku;
 
+import org.w3c.dom.Text;
+
 import java.net.URLEncoder;
 import java.util.Arrays;
 
@@ -170,6 +172,10 @@ public class GameActivity extends AppCompatActivity {
         setupDrawableForGrid();
         if (cont) {
             setGrid(loadMatrix());
+            sudoku = new Sudoku(loadMatrix(), loadSolvedMatrix());
+            mistakes = getIntent().getIntExtra("mistakes", 0);
+            TextView mistakesText = findViewById(R.id.mistakesNumber);
+            mistakesText.setText("Mistakes: " + mistakes  + "/3");
         }
         else {
             setGrid(difficulty);
@@ -177,6 +183,7 @@ public class GameActivity extends AppCompatActivity {
         findViewById(R.id.backToMainButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveMatrix(matrix);
                 finish();
             }
         });
@@ -192,8 +199,6 @@ public class GameActivity extends AppCompatActivity {
         sudoku.printSudoku();
 
         matrix = sudoku.returnMatrix();
-
-        saveMatrix(matrix);
 
         TextView numberCell;
         sudokuGrid.removeAllViews();
@@ -239,15 +244,21 @@ public class GameActivity extends AppCompatActivity {
 
     public void saveMatrix(int[][] matrix) {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
         String savingThis = matrixToString(matrix);
-        editor.putString("matrix", savingThis);
-        editor.apply();
+        sharedPref.edit().putString("matrix", savingThis).apply();
+        sharedPref.edit().putString("solvedMatrix", matrixToString(sudoku.returnSolvedMatrix())).apply();
+        sharedPref.edit().putInt("mistakes", mistakes).apply();
     }
 
     public int[][] loadMatrix() {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String matrixString = sharedPref.getString("matrix", "0");
+        return stringToDeep(matrixString);
+    }
+
+    public int[][] loadSolvedMatrix() {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        String matrixString = sharedPref.getString("solvedMatrix", "0");
         return stringToDeep(matrixString);
     }
 
@@ -411,6 +422,9 @@ public class GameActivity extends AppCompatActivity {
                 top = top/ 110;
                 //Toast.makeText(getApplicationContext(), left + " : " + top, Toast.LENGTH_LONG).show();
                 int selectedNumber = Integer.parseInt(button.getText().toString());
+                if (top != 0) {
+                    top++;
+                }
                 int actualAnswer = sudoku.returnSolvedMatrix()[top][left];
                 if (selectedNumber == actualAnswer) {
                     Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
@@ -452,6 +466,8 @@ public class GameActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(), "Wrong, try again", Toast.LENGTH_SHORT).show();
                     mistakes++;
+                    TextView mistakesText = findViewById(R.id.mistakesNumber);
+                    mistakesText.setText("Mistakes: " + mistakes  + "/3");
                     if (mistakes == 3) {
                         showLosingDialogue();
                     }
@@ -481,6 +497,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         saveMatrix(matrix);
+        finish();
         super.onBackPressed();
     }
 }
