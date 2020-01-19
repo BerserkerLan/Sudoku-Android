@@ -30,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView lastCell;
     private Drawable lastCellDrawable;
     SwitchCompat switchToDio;
+    int[][] matrix;
     LinearLayout numbersLayout;
     int mode = 0; //0 = int, 1 = DIO (Amazing programming ik >.> )
 
@@ -43,6 +44,7 @@ public class GameActivity extends AppCompatActivity {
         //Medium : Remove 35
         //Hard : Remove 50
         int difficulty = getIntent().getIntExtra("difficulty", 0);
+        boolean cont = getIntent().getBooleanExtra("continue", false);
 
         if (difficulty == 0) {
             difficulty = 25;
@@ -166,7 +168,12 @@ public class GameActivity extends AppCompatActivity {
         });
 
         setupDrawableForGrid();
-        setGrid(difficulty);
+        if (cont) {
+            setGrid(loadMatrix());
+        }
+        else {
+            setGrid(difficulty);
+        }
         findViewById(R.id.backToMainButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,14 +191,9 @@ public class GameActivity extends AppCompatActivity {
         sudoku.fillValues();
         sudoku.printSudoku();
 
-        int[][] matrix = sudoku.returnMatrix();
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        String savingThis = matrixToString(matrix);
-        editor.putString("matrix", savingThis);
-        editor.apply();
+        matrix = sudoku.returnMatrix();
 
-        int[][] newMat = stringToDeep(savingThis);
+        saveMatrix(matrix);
 
         TextView numberCell;
         sudokuGrid.removeAllViews();
@@ -233,6 +235,20 @@ public class GameActivity extends AppCompatActivity {
 
     public String matrixToString(int[][] matrix) {
         return Arrays.deepToString(matrix);
+    }
+
+    public void saveMatrix(int[][] matrix) {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        String savingThis = matrixToString(matrix);
+        editor.putString("matrix", savingThis);
+        editor.apply();
+    }
+
+    public int[][] loadMatrix() {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        String matrixString = sharedPref.getString("matrix", "0");
+        return stringToDeep(matrixString);
     }
 
     private static int[][] stringToDeep(String str) {
@@ -398,6 +414,7 @@ public class GameActivity extends AppCompatActivity {
                 int actualAnswer = sudoku.returnSolvedMatrix()[top][left];
                 if (selectedNumber == actualAnswer) {
                     Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                    matrix[top][left] = actualAnswer;
                     lastCell.setText(selectedNumber + "");
                     if (mode == 1) {
                         switch (lastCell.getText().toString()) {
@@ -463,6 +480,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        saveMatrix(matrix);
         super.onBackPressed();
     }
 }
