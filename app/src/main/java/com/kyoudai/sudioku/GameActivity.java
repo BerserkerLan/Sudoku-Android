@@ -431,6 +431,20 @@ public class GameActivity extends AppCompatActivity {
                 if (selectedNumber == actualAnswer) {
                     Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
                     matrix[top][left] = actualAnswer;
+                    boolean different = false;
+                    for (int i = 0; i < matrix.length; i++) {
+                        for (int j = 0;j < matrix[i].length; j++) {
+                            if (matrix[i][j] != sudoku.returnSolvedMatrix()[i][j]) {
+                                different = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!different) {
+                        Intent intent = new Intent(getApplicationContext(), WinningPopup.class);
+                        startActivity(intent);
+                        return;
+                    }
                     lastCell.setText(selectedNumber + "");
                     if (mode == 1) {
                         switch (lastCell.getText().toString()) {
@@ -463,7 +477,6 @@ public class GameActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Wrong, try again", Toast.LENGTH_SHORT).show();

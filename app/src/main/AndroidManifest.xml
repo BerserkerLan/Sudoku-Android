@@ -29,6 +29,9 @@
         <activity android:name=".DifficultySelectionPopup"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".WinningPopup"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.PopUpGuessTheme" />
     </application>
 
 </manifest>

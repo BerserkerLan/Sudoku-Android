@@ -15,4 +15,9 @@ public class WinningPopup extends Activity {
 
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
+
+    @Override
+    public void onBackPressed() {
+        // No Back
+    }
 }
