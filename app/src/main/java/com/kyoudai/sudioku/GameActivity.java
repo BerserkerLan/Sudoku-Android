@@ -172,8 +172,9 @@ public class GameActivity extends AppCompatActivity {
         setupDrawableForGrid();
         if (cont) {
             setGrid(loadMatrix());
+            matrix = loadMatrix();
             sudoku = new Sudoku(loadMatrix(), loadSolvedMatrix());
-            mistakes = getIntent().getIntExtra("mistakes", 0);
+            mistakes = this.getSharedPreferences("sudioku", Context.MODE_PRIVATE).getInt("mistakes", 0);
             TextView mistakesText = findViewById(R.id.mistakesNumber);
             mistakesText.setText("Mistakes: " + mistakes  + "/3");
         }
@@ -243,7 +244,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void saveMatrix(int[][] matrix) {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("sudioku",Context.MODE_PRIVATE);
         String savingThis = matrixToString(matrix);
         sharedPref.edit().putString("matrix", savingThis).apply();
         sharedPref.edit().putString("solvedMatrix", matrixToString(sudoku.returnSolvedMatrix())).apply();
@@ -251,13 +252,15 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public int[][] loadMatrix() {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("sudioku",Context.MODE_PRIVATE);
         String matrixString = sharedPref.getString("matrix", "0");
+        System.out.println("Loading Matrix....");
+        System.out.println(matrixString);
         return stringToDeep(matrixString);
     }
 
     public int[][] loadSolvedMatrix() {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("sudioku",Context.MODE_PRIVATE);
         String matrixString = sharedPref.getString("solvedMatrix", "0");
         return stringToDeep(matrixString);
     }
@@ -271,7 +274,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
         row--;
-        for (int i = 0;; i++) {
+        for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == ',') {
                 col++;
             }
