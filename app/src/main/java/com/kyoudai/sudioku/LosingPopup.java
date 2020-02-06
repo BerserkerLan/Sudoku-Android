@@ -1,6 +1,7 @@
 package com.kyoudai.sudioku;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -25,6 +26,14 @@ public class LosingPopup extends Activity {
             public void onClick(View v) {
                 GameActivity.mistakes = 2;
                 GameActivity.mistakesText.setText("Mistakes: " + GameActivity.mistakes  + "/3");
+                finish();
+            }
+        });
+
+        findViewById(R.id.quitGameButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MenuActivity.class));
                 finish();
             }
         });
