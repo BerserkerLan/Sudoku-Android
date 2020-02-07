@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/dio_losing"
+    android:background="@color/darkTransparent"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,33 +13,37 @@
         android:text="You lost"
         android:textColor="@color/white"
         android:textSize="40sp"
+        android:fontFamily="@font/titlefont"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.084" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:background="#88000000"
-        android:textSize="15sp"
-        android:textAlignment="center"
+        android:fontFamily="@font/titlefont"
         android:text="How Foolish, You made 3 mistakes and lost the game"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/undoLastMistake"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/undoLastMistake"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="55dp"
+        android:fontFamily="@font/titlefont"
         android:layout_marginTop="188dp"
         android:text="Undo Last mistake"
-        android:textColor="@color/green"
-        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        android:background="@drawable/round_button_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,16 +52,17 @@
 
     <Button
         android:id="@+id/quitGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="55dp"
+        android:background="@drawable/round_button_red"
+        android:fontFamily="@font/titlefont"
         android:text="Quit Game"
-        android:background="@drawable/round_button"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/undoLastMistake"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.151" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

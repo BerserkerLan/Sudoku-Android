@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TutorialPopup"></activity>
+        <activity android:name=".TutorialPopup" />
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="sudioku"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -26,7 +29,7 @@
         <activity
             android:name=".LosingPopup"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.PopUpGuessTheme" />
+            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".DifficultySelectionPopup"
             android:screenOrientation="portrait"

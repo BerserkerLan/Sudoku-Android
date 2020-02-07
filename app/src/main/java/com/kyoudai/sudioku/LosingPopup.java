@@ -1,7 +1,9 @@
 package com.kyoudai.sudioku;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -33,10 +35,21 @@ public class LosingPopup extends Activity {
         findViewById(R.id.quitGameButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                deleteSavedGame();
                 startActivity(new Intent(getApplicationContext(), MenuActivity.class));
                 finish();
             }
         });
 
+    }
+
+    public void deleteSavedGame() {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        sharedPref.edit().putString("matrix", "0").apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Nothing
     }
 }
