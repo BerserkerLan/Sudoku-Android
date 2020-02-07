@@ -182,6 +182,7 @@ public class GameActivity extends AppCompatActivity {
         }
         else {
             setGrid(difficulty);
+            saveMatrix(matrix);
         }
         findViewById(R.id.backToMainButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -514,5 +515,17 @@ public class GameActivity extends AppCompatActivity {
         saveMatrix(matrix);
         finish();
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onStop() {
+        saveMatrix(matrix);
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        saveMatrix(matrix);
+        super.onDestroy();
     }
 }
