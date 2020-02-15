@@ -36,7 +36,9 @@ public class GameActivity extends AppCompatActivity {
     static TextView mistakesText;
     LinearLayout numbersLayout;
     int mode = 0; //0 = int, 1 = DIO (Amazing programming ik >.> )
+    int timeSeconds = 0;
     public static int mistakes;
+    boolean playingGame = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class GameActivity extends AppCompatActivity {
         else {
             difficulty = 50;
         }
+        timeSeconds = loadTimeSeconds();
         sudokuGrid = findViewById(R.id.sudokuGrid);
         mistakes = 0;
         switchToDio = findViewById(R.id.switchToDio);
@@ -184,6 +187,8 @@ public class GameActivity extends AppCompatActivity {
             setGrid(difficulty);
             saveMatrix(matrix);
         }
+        runClock();
+        playingGame = true;
         findViewById(R.id.backToMainButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,6 +257,8 @@ public class GameActivity extends AppCompatActivity {
         sharedPref.edit().putString("matrix", savingThis).apply();
         sharedPref.edit().putString("solvedMatrix", matrixToString(sudoku.returnSolvedMatrix())).apply();
         sharedPref.edit().putInt("mistakes", mistakes).apply();
+        sharedPref.edit().putInt("timeTakenSeconds", timeSeconds).apply();
+        playingGame = false;
     }
 
     public int[][] loadMatrix() {
@@ -266,6 +273,11 @@ public class GameActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getSharedPreferences("sudioku",Context.MODE_PRIVATE);
         String matrixString = sharedPref.getString("solvedMatrix", "0");
         return stringToDeep(matrixString);
+    }
+
+    public int loadTimeSeconds() {
+        SharedPreferences sharedPref = this.getSharedPreferences("sudioku",Context.MODE_PRIVATE);
+        return sharedPref.getInt("timeTakenSeconds", 0);
     }
 
     private static int[][] stringToDeep(String str) {
@@ -508,6 +520,46 @@ public class GameActivity extends AppCompatActivity {
     public void showLosingDialogue() {
         final Intent showLosingDialogue = new Intent(getApplicationContext(), LosingPopup.class);
         startActivity(showLosingDialogue);
+    }
+
+    public void runClock() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (!this.isInterrupted() && playingGame) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // update TextView here!
+                                timeSeconds++;
+                                TextView timeText = findViewById(R.id.timeText);
+                                timeText.setText("Time - " + formatSeconds(timeSeconds));
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+
+                }
+            }
+        };
+
+        thread.start();
+    }
+
+    public String formatSeconds(int secondsCount){
+        //Calculate the seconds to display:
+        int seconds = secondsCount %60;
+        secondsCount -= seconds;
+        //Calculate the minutes:
+        long minutesCount = secondsCount / 60;
+        long minutes = minutesCount % 60;
+        minutesCount -= minutes;
+        //Calculate the hours:
+        long hoursCount = minutesCount / 60;
+        //Build the String
+        return "" + hoursCount + ":" + minutes + ":" + seconds;
     }
 
     @Override
