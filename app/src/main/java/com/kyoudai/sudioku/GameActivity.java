@@ -455,6 +455,8 @@ public class GameActivity extends AppCompatActivity {
                     }
                     if (!different) {
                         Intent intent = new Intent(getApplicationContext(), WinningPopup.class);
+                        intent.putExtra("timeTaken", timeSeconds);
+                        playingGame = false;
                         startActivity(intent);
                         return;
                     }
