@@ -9,7 +9,6 @@ import com.synnapps.carouselview.CarouselView;
 
 public class TutorialPopup extends AppCompatActivity {
 
-    CarouselView carouselView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

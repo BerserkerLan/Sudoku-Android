@@ -2,4 +2,5 @@
     <string name="app_name">Sudioku</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_difficulty_popup">DifficultyPopup</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>
