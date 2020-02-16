@@ -3,6 +3,7 @@ package com.kyoudai.sudioku;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kyoudai.utils.Sudoku;
+import com.mopub.common.MoPub;
+import com.mopub.mobileads.MoPubRewardedVideos;
 
 import org.w3c.dom.Text;
 
@@ -39,17 +42,21 @@ public class GameActivity extends AppCompatActivity {
     int timeSeconds = 0;
     public static int mistakes;
     boolean playingGame = true;
+    boolean cont;
+    public static GameActivity gameActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        handleAdShowing();
+        MoPub.onCreate(this);
+        gameActivity = this;
         //Easy : Remove 25
         //Medium : Remove 35
         //Hard : Remove 50
         int difficulty = getIntent().getIntExtra("difficulty", 0);
-        boolean cont = getIntent().getBooleanExtra("continue", false);
-
+        cont = getIntent().getBooleanExtra("continue", false);
         mistakesText = findViewById(R.id.mistakesNumber);
 
         if (difficulty == 0) {
@@ -186,6 +193,7 @@ public class GameActivity extends AppCompatActivity {
         else {
             setGrid(difficulty);
             saveMatrix(matrix);
+            timeSeconds = 0;
         }
         runClock();
         playingGame = true;
@@ -547,6 +555,18 @@ public class GameActivity extends AppCompatActivity {
             }
         };
 
+        thread.start();
+    }
+
+    public void handleAdShowing() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (!MoPubRewardedVideos.hasRewardedVideo(Constants.MOPUB_KEY)) {
+                }
+                MoPubRewardedVideos.showRewardedVideo(Constants.MOPUB_KEY);
+            }
+        };
         thread.start();
     }
 
