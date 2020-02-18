@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.synnapps.carouselview.CarouselView;
-
 public class TutorialPopup extends AppCompatActivity {
 
     @Override

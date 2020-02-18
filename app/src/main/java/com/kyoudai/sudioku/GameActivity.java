@@ -19,12 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kyoudai.utils.Sudoku;
-import com.mopub.common.MoPub;
-import com.mopub.mobileads.MoPubRewardedVideos;
+import com.startapp.android.publish.adsCommon.StartAppAd;
+import com.startapp.android.publish.adsCommon.StartAppSDK;
 
-import org.w3c.dom.Text;
 
-import java.net.URLEncoder;
 import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity {
@@ -49,8 +47,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        handleAdShowing();
-        MoPub.onCreate(this);
         gameActivity = this;
         //Easy : Remove 25
         //Medium : Remove 35
@@ -58,6 +54,9 @@ public class GameActivity extends AppCompatActivity {
         int difficulty = getIntent().getIntExtra("difficulty", 0);
         cont = getIntent().getBooleanExtra("continue", false);
         mistakesText = findViewById(R.id.mistakesNumber);
+
+        StartAppSDK.init(this, Constants.APP_ID, true);
+        StartAppAd.showAd(this);
 
         if (difficulty == 0) {
             difficulty = 25;
@@ -201,6 +200,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveMatrix(matrix);
+                StartAppAd.onBackPressed(getApplicationContext());
                 finish();
             }
         });
@@ -558,17 +558,6 @@ public class GameActivity extends AppCompatActivity {
         thread.start();
     }
 
-    public void handleAdShowing() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                while (!MoPubRewardedVideos.hasRewardedVideo(Constants.MOPUB_KEY)) {
-                }
-                MoPubRewardedVideos.showRewardedVideo(Constants.MOPUB_KEY);
-            }
-        };
-        thread.start();
-    }
 
     public String formatSeconds(int secondsCount){
         //Calculate the seconds to display:
@@ -587,6 +576,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         saveMatrix(matrix);
+        StartAppAd.onBackPressed(this);
         finish();
         super.onBackPressed();
     }

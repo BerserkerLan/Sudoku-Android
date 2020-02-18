@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mopub.common.MoPub;
-import com.mopub.mobileads.MoPubRewardedVideos;
+import com.startapp.android.publish.adsCommon.StartAppAd;
+import com.startapp.android.publish.adsCommon.StartAppSDK;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -19,16 +19,17 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        MoPub.onCreate(this);
+        StartAppSDK.init(this, Constants.APP_ID, true);
+        StartAppAd.disableSplash();
 
         findViewById(R.id.continueButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     checkIfGameExists();
-                    MoPubRewardedVideos.loadRewardedVideo(Constants.MOPUB_KEY);
                     Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                    intent.putExtra("continue", true);
+                    intent.putExtra("continue", false);
+                    StartAppAd.showAd(getApplicationContext());
                     startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Please start a new game, there is no previous game saved", Toast.LENGTH_SHORT).show();
@@ -39,7 +40,6 @@ public class MenuActivity extends AppCompatActivity {
         findViewById(R.id.newGameButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MoPubRewardedVideos.loadRewardedVideo(Constants.MOPUB_KEY);
                 Intent intent = new Intent(getApplicationContext(), DifficultySelectionPopup.class);
                 startActivity(intent);
             }

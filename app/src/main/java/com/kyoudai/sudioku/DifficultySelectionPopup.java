@@ -8,6 +8,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.startapp.android.publish.adsCommon.StartAppAd;
+
 public class DifficultySelectionPopup extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
