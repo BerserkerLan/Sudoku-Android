@@ -48,13 +48,13 @@ public class LosingPopup extends Activity {
                     @Override
                     public void onVideoCompleted() {
                         Log.i("VideoWatched","watched");
+                        GameActivity.mistakes = 2;
+                        GameActivity.mistakesText.setText("Mistakes: " + GameActivity.mistakes  + "/3");
+                        finish();
 
                     }
                 });
 
-                GameActivity.mistakes = 2;
-                GameActivity.mistakesText.setText("Mistakes: " + GameActivity.mistakes  + "/3");
-                finish();
             }
         });
 

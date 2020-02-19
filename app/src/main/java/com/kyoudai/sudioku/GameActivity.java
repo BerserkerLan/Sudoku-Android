@@ -3,7 +3,6 @@ package com.kyoudai.sudioku;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -442,10 +441,18 @@ public class GameActivity extends AppCompatActivity {
                 Button button = (Button) view;
                 int left = getRelativeLeft(lastCell);
                 int top = getRelativeTop(lastCell);
-                left = left - 45;
-                left = left/110;
-                top = top - 582;
-                top = top/ 110;
+                left = left - sudokuGrid.getLeft();
+                top = top - sudokuGrid.getTop();
+                String leftIndex = left + "";
+                String topIndex = top + "";
+                if (leftIndex.length() != 3) {
+                    leftIndex = "0";
+                }
+                if (topIndex.length() != 3) {
+                    topIndex = "0";
+                }
+                left = Integer.parseInt(leftIndex.charAt(0) + "");
+                top = Integer.parseInt(topIndex.charAt(0) + "");
                 //Toast.makeText(getApplicationContext(), left + " : " + top, Toast.LENGTH_LONG).show();
                 int selectedNumber = Integer.parseInt(button.getText().toString());
                 int actualAnswer = sudoku.returnSolvedMatrix()[top][left];
